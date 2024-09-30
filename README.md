@@ -161,3 +161,5 @@ CREATE TABLE airport_plane (
     ON UPDATE CASCADE  
 );
 ```
+
+![flow.png](images/db.png)

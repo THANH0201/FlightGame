@@ -122,7 +122,7 @@ CREATE TABLE plane (
   `plane_name` VARCHAR(40) NOT NULL,  
   `plane_color` VARCHAR(40) NULL,  
   `plane_type` INT NOT NULL,  
-  `comsume_energy` INT NULL,  
+  `consume_energy` INT NULL,  
   PRIMARY KEY (`plane_id`),  
   UNIQUE INDEX `id_UNIQUE` (`plane_id` ASC),  
   INDEX `f_plane_type_idx` (`plane_type` ASC),  
@@ -133,14 +133,14 @@ CREATE TABLE plane (
     ON UPDATE NO ACTION  
 );
 
-INSERT INTO plane (plane_id, plane_name, plane_color, plane_type, comsume_energy)
+INSERT INTO plane (plane_id, plane_name, plane_color, plane_type, consume_energy)
 VALUES 
-("001", " HEL-NH90", "BLACK", "001", "10"),
-("002", " PHE-300", "BROWN", "002", "20"),
-("003", "AIR-A380",  "BLUE", "003","30"),
-("004", "BOE-B787",  "RED", "004","40"),
-("005", "CHA-350", "wHITE", "005","50"),
-("006", "GUF-G650", "GREEN", "005","50");
+("001", " HEL-NH90", "BLACK", 1, 10),
+("002", " PHE-300", "BROWN", 2, 20),
+("003", "AIR-A380",  "BLUE", 3, 30),
+("004", "BOE-B787",  "RED", 4, 40),
+("005", "CHA-350", "wHITE", 5, 50),
+("006", "GUF-G650", "GREEN", 5, 50);
 ```
 
 ```sql

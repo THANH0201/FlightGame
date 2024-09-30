@@ -4,6 +4,8 @@
 
 
 
+### Game flow
+![flow.png](images/flow.png)
 
 ### Database
 This game uses the airport table from the database course.
@@ -21,118 +23,127 @@ This game uses the airport table from the database course.
 `DROP TABLE goal_reached;`  
 `SET FOREIGN_KEY_CHECKS = 1;`
 5. Create the following tables:  
-> CREATE TABLE player (  
-    \`id\` INT(11) NOT NULL AUTO_INCREMENT,  
-    \`user_name\` VARCHAR(40) NOT NULL,  
-    \`location\` VARCHAR(10) NULL,  
-    \`plane\` VARCHAR(40) NULL,  
-    \`score\` INT NULL,  
-    PRIMARY KEY (\`id\`),  
-    UNIQUE INDEX \`id_UNIQUE\` (\`id\` ASC),  
-    UNIQUE INDEX \`user_name_UNIQUE\` (\`user_name\` ASC)  
+```sql
+CREATE TABLE player (  
+    `id` INT(11) NOT NULL AUTO_INCREMENT,  
+    `user_name` VARCHAR(40) NOT NULL,  
+    `location` VARCHAR(10) NULL,  
+    `plane` VARCHAR(40) NULL,  
+    `score` INT NULL,  
+    PRIMARY KEY (`id`),  
+    UNIQUE INDEX `id_UNIQUE` (`id` ASC),  
+    UNIQUE INDEX `user_name_UNIQUE` (`user_name` ASC)  
 )  
 DEFAULT CHARACTER SET = latin1;
+```
 
 
-> CREATE TABLE task_type (  
-  \`id\` INT(11) NOT NULL AUTO_INCREMENT,  
-  \`type\` VARCHAR(45) NOT NULL,  
-  \`timelimit\` INT NULL,  
-  PRIMARY KEY (\`id\`),  
-  UNIQUE INDEX \`int_UNIQUE\` (\`id\` ASC)  
-);
+```sql
+CREATE TABLE task_type (  
+  `id` INT(11) NOT NULL AUTO_INCREMENT,  
+  `type` VARCHAR(45) NOT NULL,  
+  `timelimit` INT NULL,  
+  PRIMARY KEY (`id`),  
+  UNIQUE INDEX `int_UNIQUE` (`id` ASC)  
+);  
+
 INSERT INTO task_type (type, timelimit)   
 VALUES ('Refill energy', null),  
 ('Answer question', 60);
+```
 
-
-> CREATE TABLE task (  
-  \`id\` INT(11) NOT NULL AUTO_INCREMENT,  
-  \`task_name\` VARCHAR(45) NOT NULL,  
-  \`task_desciption\` VARCHAR(200) NULL,  
-  \`task_answer\` VARCHAR(45) NULL,  
-  \`task_type\` INT NOT NULL,  
-  \`airport\` VARCHAR(10) NOT NULL,  
-  \`reward\` INT NULL DEFAULT 0,  
-  \`penalty\` INT NULL DEFAULT 0,  
-  PRIMARY KEY (\`id\`),  
-  UNIQUE INDEX \`id_UNIQUE\` (\`id\` ASC),  
-  INDEX \`f_task_type_idx\` (`task_type` ASC),  
-  INDEX \`f_airport_idx\` (\`airport\` ASC),  
-  CONSTRAINT \`f_task_type\`  
-    FOREIGN KEY (\`task_type\`)  
-    REFERENCES \`flightgame\`.\`task_type\` (\`id\`)  
+```sql
+CREATE TABLE task (  
+  `id` INT(11) NOT NULL AUTO_INCREMENT,  
+  `task_name` VARCHAR(45) NOT NULL,  
+  `task_desciption` VARCHAR(200) NULL,  
+  `task_answer` VARCHAR(45) NULL,  
+  `task_type` INT NOT NULL,  
+  `airport` VARCHAR(10) NOT NULL,  
+  `reward` INT NULL DEFAULT 0,  
+  `penalty` INT NULL DEFAULT 0,  
+  PRIMARY KEY (`id`),  
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),  
+  INDEX `f_task_type_idx` (`task_type` ASC),  
+  INDEX `f_airport_idx` (`airport` ASC),  
+  CONSTRAINT `f_task_type`  
+    FOREIGN KEY (`task_type`)  
+    REFERENCES `flightgame`.`task_type` (`id`)  
     ON DELETE RESTRICT  
     ON UPDATE CASCADE,  
-  CONSTRAINT \`f_airport\`  
-    FOREIGN KEY (\`airport\`)  
-    REFERENCES \`flightgame\`.\`airport\` (\`ident\`)  
+  CONSTRAINT `f_airport`  
+    FOREIGN KEY (`airport`)  
+    REFERENCES `flightgame`.`airport` (`ident`)  
     ON DELETE RESTRICT  
     ON UPDATE CASCADE
 );
- 
+```
 
-> CREATE TABLE player_task (  
-  \`player_id\` INT NOT NULL,  
-  \`task_id\` INT NOT NULL,  
-  \`status\` INT NOT NULL,  
-  INDEX \`f_task_idx\` (\`task_id\` ASC),  
-  CONSTRAINT \`f_task\`  
-    FOREIGN KEY (\`task_id\`)  
-    REFERENCES \`flightgame\`.\`task\` (\`id\`)  
+```sql
+CREATE TABLE player_task (  
+  `player_id` INT NOT NULL,  
+  `task_id` INT NOT NULL,  
+  `status` INT NOT NULL,  
+  INDEX `f_task_idx` (`task_id` ASC),  
+  CONSTRAINT `f_task`  
+    FOREIGN KEY (`task_id`)  
+    REFERENCES `flightgame`.`task` (`id`)  
     ON DELETE RESTRICT  
     ON UPDATE CASCADE,  
-  CONSTRAINT \`f_player\`  
-    FOREIGN KEY (\`player_id\`)  
-    REFERENCES \`flightgame\`.\`player\` (\`id\`)  
+  CONSTRAINT `f_player`  
+    FOREIGN KEY (`player_id`)  
+    REFERENCES `flightgame`.`player` (`id`)  
     ON DELETE RESTRICT  
     ON UPDATE CASCADE
 );
- 
+```
 
-> CREATE TABLE plane_type (  
-  \`id\` INT(11) NOT NULL AUTO_INCREMENT,  
-  \`plane_type\` VARCHAR(40) NOT NULL,  
-  \`description\` VARCHAR(200) NULL,  
-  PRIMARY KEY (\`id\`),  
-  UNIQUE INDEX \`id_UNIQUE\` (\`id\` ASC)  
+```sql
+CREATE TABLE plane_type (  
+  `id` INT(11) NOT NULL AUTO_INCREMENT,  
+  `plane_type` VARCHAR(40) NOT NULL,  
+  `description` VARCHAR(200) NULL,  
+  PRIMARY KEY (`id`),  
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC)  
 );
+```
  
-
-> CREATE TABLE plane (  
-  \`plane_id\` VARCHAR(10) NOT NULL,  
-  \`plane_name\` VARCHAR(40) NOT NULL,  
-  \`plane_color\` VARCHAR(40) NULL,  
-  \`plane_type\` INT NOT NULL,  
-  \`comsume_energy\` INT NULL,  
-  PRIMARY KEY (\`plane_id\`),  
-  UNIQUE INDEX \`id_UNIQUE\` (\`plane_id\` ASC),  
-  INDEX \`f_plane_type_idx\` (\`plane_type\` ASC),  
-  CONSTRAINT \`f_plane_type\`  
-    FOREIGN KEY (\`plane_type\`)  
-    REFERENCES \`flightgame\`.\`plane_type\` (\`id\`)  
+```sql
+CREATE TABLE plane (  
+  `plane_id` VARCHAR(10) NOT NULL,  
+  `plane_name` VARCHAR(40) NOT NULL,  
+  `plane_color` VARCHAR(40) NULL,  
+  `plane_type` INT NOT NULL,  
+  `comsume_energy` INT NULL,  
+  PRIMARY KEY (`plane_id`),  
+  UNIQUE INDEX `id_UNIQUE` (`plane_id` ASC),  
+  INDEX `f_plane_type_idx` (`plane_type` ASC),  
+  CONSTRAINT `f_plane_type`  
+    FOREIGN KEY (`plane_type`)  
+    REFERENCES `flightgame`.`plane_type` (`id`)  
     ON DELETE NO ACTION  
     ON UPDATE NO ACTION  
 );
+```
 
-
-> CREATE TABLE airport_plane (  
-  \`airport\` VARCHAR(40) NOT NULL,  
-  \`plane_id\` VARCHAR(10) NOT NULL,  
-  \`initial_score\` INT NULL DEFAULT 0,  
-  PRIMARY KEY (\`airport\`, \`plane_id\`),  
-  CONSTRAINT \`f_airport_plane_airport\`  
-    FOREIGN KEY (\`airport\`)  
-    REFERENCES \`flightgame\`.\`airport\` (\`ident\`)  
+```sql
+CREATE TABLE airport_plane (  
+  `airport` VARCHAR(40) NOT NULL,  
+  `plane_id` VARCHAR(10) NOT NULL,  
+  `initial_score` INT NULL DEFAULT 0,  
+  PRIMARY KEY (`airport`, `plane_id`),  
+  CONSTRAINT `f_airport_plane_airport`  
+    FOREIGN KEY (`airport`)  
+    REFERENCES `flightgame`.`airport` (`ident`)  
     ON DELETE RESTRICT  
     ON UPDATE CASCADE,  
-  CONSTRAINT \`f_airport_plane_plane\`  
-    FOREIGN KEY (\`plane_id\`)  
-    REFERENCES \`flightgame\`.\`plane\` (\`plane_id\`)  
+  CONSTRAINT `f_airport_plane_plane`  
+    FOREIGN KEY (`plane_id`)  
+    REFERENCES `flightgame`.`plane` (`plane_id`)  
     ON DELETE RESTRICT  
     ON UPDATE CASCADE  
 );
-
+```
 
 
 

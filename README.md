@@ -18,6 +18,53 @@ VALUES
 ("005", "CHA-350", "wHITE", "005","50"),
 ("006", "GUF-G650", "GREEN", "005","50");
 ```
+```task_type table
+INSERT INTO task_type (type, timelimit)
+VALUES
+("1","SOLVE PROBLEM", "60"),
+("2","REFUELING", "120");
+```
+```fk for airport_plane
+ALTER TABLE airport_plane
+	DROP FOREIGN KEY f_airport_plane_airport;
+ALTER TABLE airport
+	ADD INDEX type (type) USING BTREE;
+ALTER TABLE airport_plane
+	ADD CONSTRAINT FK_airport_plane_airport FOREIGN KEY (airport) REFERENCES airport (type) ON UPDATE CASCADE ON DELETE CASCADE;
+```
+```airport_plane table
+INSERT INTO airport_plane (airport,plane_id,initial_score)
+VALUES
+("heliport","001", "100"),
+("small_airport","001", "100"),
+("medium_airport","001", "100"),
+("large_airport","001", "100"),
+("small_airport","002", "100"),
+("medium_airport","002", "100"),
+("large_airport","002", "100"),
+("medium_airport","003", "100"),
+("large_airport","003", "100"),
+("medium_airport","004", "100"),
+("large_airport","005", "100"),
+("large_airport","006", "100");
+```
+```task table
+ALTER TABLE task
+	DROP FOREIGN KEY f_airport;
+ALTER TABLE task
+	modify COLUMN airport VARCHAR(20);
+	
+INSERT INTO task(id, task_name, task_desciption,task_answer, task_type, airport, reward, penalty)
+VALUES
+("1", "arrage sentence", "being green stones at 3 small airport " ,"3 green stones being at small airport", "1", "large_airport", "10", "20"),
+("2", "arrage sentence", "being green stones at 3 small airport " ,"3 green stones being at small airport", "1", "small_airport", "10", "20"),
+("3", "arrage sentence", "being green stones at 3 small airport " ,"3 green stones being at small airport", "1", "medium_airport", "10", "20"),
+("4", "arrage sentence", "being green stones at 3 small airport " ,"3 green stones being at small airport", "1", "heliport", "10", "20"),
+("5", "buy information", " get position of final stone", "yes", "1", "heliport", "0", " 150"),
+("6", "buy information", " get position of final stone", "yes", "1", "small_aiport", "0", " 150"),
+("7", "buy information", " get position of final stone", "yes", "1", "medium_airport", "0", " 150"),
+("8", "buy information", " get position of final stone", "yes", "1", "large_airport", "0", " 150");
+```
 
 
 

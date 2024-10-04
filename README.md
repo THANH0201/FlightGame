@@ -77,6 +77,19 @@ CREATE TABLE task (
     ON DELETE RESTRICT  
     ON UPDATE CASCADE
 );
+
+INSERT INTO task (task_name, task_desciption, task_answer, task_type, airport, reward, penalty)
+VALUES
+("Answer question", "What color are bananas?", "Yellow", 2, "00A", 20, 10),
+("Answer question", "How many days are there in a week?" ,"7", 2, "00CL", 20, 10),
+("Answer question", "What is the freezing point (Celsius) of water?" ,"0", 2, "EFHK", 20, 10),
+("Answer question", "What's the name of a place you go to see lots of animals?" ,"The zoo", 2, "EFJO", 20, 10),
+("Answer question", "If you freeze water, what do you get?" ,"Ice", 2, "00FA", 20, 10),
+("Answer question", "How many planets are in our solar system?" ,"8", 2, "5A8", 20, 10),
+("Answer question", "Where does Santa Claus live?" ,"The North Pole", 2, "AGGH", 20, 10),
+("Answer question", "What shape is the Earth?" ,"Sphere", 2, "AT03", 20, 10),
+("Answer question", "How many legs does a spider have?" ,"8", 2, "AYHK", 20, 10),
+("Answer question", "How many continents are there?" ,"7", 2, "BIKF", 20, 10);
 ```
 
 ```sql
@@ -160,6 +173,21 @@ CREATE TABLE airport_plane (
     ON DELETE RESTRICT  
     ON UPDATE CASCADE  
 );
+
+INSERT INTO airport_plane (airport, plane_id, initial_score)
+VALUES
+("00A","001", 100),
+("00CL","001", 100),
+("EFJO","001", 100),
+("EFHK","001", 100),
+("00FA","002", 200),
+("EFJO","002", 200),
+("EFHK","002", 200),
+("5A8","003", 300),
+("AGGH","003", 300),
+("AT03","004", 300),
+("AYHK","005", 400),
+("BIKF","006", 400);
 ```
 
 ![flow.png](images/db.png)

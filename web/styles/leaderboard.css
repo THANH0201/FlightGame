@@ -1,0 +1,66 @@
+/* Fix for Long Table */
+.table-container {
+    width: 80%;
+    max-height: 400px; /* Set maximum height for scrolling */
+    margin: 20px auto;
+    overflow-y: auto;  /* Enable vertical scrolling */
+    border: 2px solid var(--blue1);
+    border-radius: 8px;
+    background: var(--white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Leaderboard Table Styles */
+#leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+#leaderboard-table thead {
+    background: var(--purple);
+    color: var(--white);
+    position: sticky;
+    top: 0;
+}
+
+#leaderboard-table th,
+#leaderboard-table td {
+    padding: 10px 15px;   /* Reduced padding */
+    font-size: 0.9rem;    /* Smaller text size */
+    border: 1px solid var(--blue1);
+}
+
+#leaderboard-table tbody tr:nth-child(odd) {
+    background: var(--blue2);
+}
+
+#leaderboard-table tbody tr:nth-child(even) {
+    background: var(--blue3);
+}
+
+#leaderboard-table tbody tr:hover {
+    background: var(--blue1);
+    color: var(--white);
+}
+
+/* Rank Badge and Icons */
+.rank-badge {
+    font-size: 1.2rem;    /* Smaller font size */
+    font-weight: bold;
+    color: var(--purple);
+}
+
+.material-icons {
+    vertical-align: middle;
+}
+
+.profile-icon {
+    font-size: 1.8rem;
+    color: var(--blue1);
+}
+
+.intro h2 .material-icons {
+    font-size: 4rem;
+}
+

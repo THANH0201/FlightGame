@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Flight Game</title>
+    <link href="styles/styles.css" rel="stylesheet">
+    <script defer src="js/home.js"></script>
+</head>
+<body>
+<header>
+    <div class="nav">
+        <nav>
+            <ul>
+                <li><a class="active" href="index.html">Home</a></li>
+                <li><a href="how-to-play.html">How to Play</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="intro" id="intro">
+        <div class="intro-text">
+            <h2>Welcome to Flight Game!</h2>
+            <p>Embark on an exciting journey exploring airports, weather, and global adventures!</p>
+            <button class="btn" id="openRegister">Start New Journey</button>
+            <button class="btn" id="openLogin">Continue My Journey</button>
+        </div>
+    </section>
+</main>
+
+<!-- Register Modal -->
+<div class="modal" id="registerModal">
+    <div class="modal-content">
+        <span class="close" id="closeRegister">&times;</span>
+        <h2>Create New Account</h2>
+        <form action="#" class="register-form" method="POST">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="reg-username">Username</label>
+                    <input id="reg-username" name="username" placeholder="Enter your username" required type="text">
+                </div>
+                <div class="form-group">
+                    <label for="reg-password">Password</label>
+                    <input id="reg-password" name="password" placeholder="Enter your password" required type="password">
+                </div>
+                <div class="form-group">
+                    <label for="reg-continent">Continent</label>
+                    <select id="reg-continent" name="continent" required>
+                        <option disabled selected value="">Select your continent</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="reg-country">Country</label>
+                    <select id="reg-country" name="country" required>
+                        <option disabled selected value="">Select your country</option>
+                    </select>
+                </div>
+                <div class="form-group form-group-wide">
+                    <label for="reg-airport">Airport</label>
+                    <select id="reg-airport" name="airport" required>
+                        <option disabled selected value="">Select your airport</option>
+                    </select>
+                </div>
+                <div class="form-group form-group-wide">
+                    <label>Choose Your Plane</label>
+                    <div class="plane-selection" id="reg-plane">
+                        <input id="plane1" name="plane" type="radio" value="1">
+                        <label for="plane1">
+                            <img alt="Plane 1" src="images/plane-1.png">
+                        </label>
+                        <input id="plane2" name="plane" type="radio" value="2">
+                        <label for="plane2">
+                            <img alt="Plane 2" src="images/plane-2.png">
+                        </label>
+                        <input id="plane3" name="plane" type="radio" value="3">
+                        <label for="plane3">
+                            <img alt="Plane 3" src="images/plane-3.png">
+                        </label>
+                        <input id="plane4" name="plane" type="radio" value="4">
+                        <label for="plane4">
+                            <img alt="Plane 4" src="images/plane-4.png">
+                        </label>
+                        <input id="plane5" name="plane" type="radio" value="5">
+                        <label for="plane5">
+                            <img alt="Plane 5" src="images/plane-5.png">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <button class="btn" type="submit">Start My Journey</button>
+        </form>
+    </div>
+</div>
+
+<!-- Login Modal -->
+<div class="modal" id="loginModal">
+    <div class="modal-content">
+        <span class="close" id="closeLogin">&times;</span>
+        <h2>Login</h2>
+        <form action="#" class="login-form" method="POST">
+            <div id="login-error-message" class="error-message" style="display: none;"></div>
+            <div class="form-group">
+                <label for="login-username">Username:</label>
+                <input id="login-username" name="username" placeholder="Enter your username" required type="text">
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password:</label>
+                <input id="login-password" name="password" placeholder="Enter your password" required type="password">
+            </div>
+            <button class="btn" type="submit">Continue My Journey</button>
+        </form>
+    </div>
+</div>
+
+
+<footer>
+    <p>&copy; 2024 TXL24S1-D-Group 2. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

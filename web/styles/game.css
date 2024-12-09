@@ -1,0 +1,408 @@
+/* Main Section */
+.page-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    padding: 2rem;
+}
+
+.leaflet-container {
+    background: transparent !important;
+}
+
+/* Map Box */
+.map-box {
+    width: 100%;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Tabs Box */
+.tabs-box {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Tabs Header */
+.tabs-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    /*background: var(--blue2);*/
+    /*padding: 1rem 0;*/
+    /*border-radius: 10px 10px 0 0;*/
+    /*background-color: var(--gray);*/
+    /*border-bottom: 2px solid var(--gray);*/
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: url('../images/plane-cursor.png'), auto;
+    transition: all 0.3s ease;
+    text-align: center;
+    width: 50%;
+
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*align-items: center;*/
+    /*padding: 0.8rem 1rem;*/
+    /*color: var(--white);*/
+    /*font-size: 0.9rem;*/
+    /*border: none;*/
+    /*background: transparent;*/
+    /*cursor: url('../images/plane-cursor.png'), auto;*/
+    /*transition: all 0.3s ease;*/
+}
+
+.tab-btn i {
+    font-size: 2rem;
+    /*margin-bottom: 0.3rem;*/
+    color: inherit;
+    margin-right: 0.8rem;
+}
+
+/* Tab Button Hover */
+.tab-btn:hover {
+    background-color: var(--blue1);
+    color: var(--white);
+    /*transform: scale(1.05);*/
+}
+
+/* Active Tab Button */
+.tab-btn.active {
+    background: linear-gradient(to right, var(--purple), var(--blue2));
+    color: white;
+    box-shadow: 0 4px 6px rgba(33, 150, 243, 0.3);
+}
+
+/*.tab-btn.active, .tab-btn:hover {*/
+/*    background: var(--white);*/
+/*    color: var(--purple);*/
+/*    border-radius: 8px;*/
+/*}*/
+
+/* Tabs Content */
+.tabs-content {
+    padding: 1.5rem;
+
+    /*flex: 1;*/
+    /*padding: 1.5rem;*/
+    /*!*display: flex;*!*/
+    /*justify-content: space-between;*/
+    /*!*background: linear-gradient(135deg, #6e7f8c, #3a4e69); !* Background gradient *!*!*/
+    /*!*padding: 20px 30px;*!*/
+    /*border-radius: 10px;*/
+    /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-content h2 {
+    font-size: 1.8rem;
+    color: var(--purple);
+    margin-bottom: 1rem;
+}
+
+.tab-content ul {
+    list-style: none;
+    margin-bottom: 1.5rem;
+}
+
+.tab-content ul li {
+    margin-bottom: 0.5rem;
+}
+
+.tab-content ul li strong {
+    color: var(--black);
+}
+
+/* Continue Journey Button */
+.tab-content .btn,
+.mission-box .btn {
+    padding: 0.8rem 1.5rem;
+    background-color: var(--purple);
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    cursor: url('../images/plane-cursor.png'), auto;
+    font-size: 1rem;
+    font-weight: bold;
+    /*text-transform: uppercase;*/
+    align-self: center;
+    transition: all 0.3s ease;
+}
+
+.tab-content .btn:hover,
+.mission-box .btn:hover {
+    background-color: var(--blue1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Left Box */
+.mission-box {
+    background-color: transparent;
+    border-radius: 10px;
+    text-align: left;
+    padding: 2rem;
+    /*margin: 20px;*/
+    flex-grow: 1;
+    position: relative;
+}
+
+.mission-box h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--purple);
+}
+
+.mission-box p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.mission-box .weather-info {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.mission-box img {
+    width: 50px;
+    height: 50px;
+}
+
+.mission-box .question {
+    font-size: 1rem;
+    color: black;
+}
+
+/* Mission Status Bar */
+.mission-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 2rem 0 2rem;
+}
+
+/* Total Score Display */
+.score-display {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--purple);
+}
+
+/* Question Indicators */
+.question-indicators {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.indicator {
+    width: 20px;
+    height: 20px;
+    background: var(--gray);
+    color: var(--black);
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+/* Indicator States */
+.indicator.correct {
+    background: #4CAF50; /* Green */
+    color: var(--white);
+}
+
+.indicator.incorrect {
+    background: #F44336; /* Red */
+    color: var(--white);
+}
+
+/* Options Layout */
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.option-btn {
+    padding: 0.5rem;
+    font-size: 1rem;
+    background-color: var(--blue2);
+    color: var(--black);
+    border: none;
+    border-radius: 50px;
+    cursor: url('../images/plane-cursor.png'), auto;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.option-btn:hover {
+    background-color: var(--blue1);
+}
+
+.option-btn.correct {
+    background-color: #4CAF50; /* Green */
+    color: var(--white);
+}
+
+.option-btn.incorrect {
+    background-color: #F44336; /* Red */
+    color: var(--white);
+}
+
+/* Icon Next Button */
+.next-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--purple);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+    cursor: url('../images/plane-cursor.png'), auto;
+    transition: all 0.3s ease;
+    margin-left: auto;
+    margin-top: 1rem;
+}
+
+.next-btn.hidden {
+    display: none;
+}
+
+.next-btn:hover {
+    background-color: var(--blue1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.next-btn:focus {
+    outline: none;
+}
+
+/* Feedback after Answering */
+.option-btn.correct, .option-btn.incorrect {
+    pointer-events: none; /* Disable further clicks after selection */
+}
+
+/* Mission Result Section */
+.mission-result {
+    padding: 2rem;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.mission-result h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--purple);
+}
+
+.mission-result p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.mission-result .btn {
+    padding: 1rem 2rem;
+    background-color: var(--purple);
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    /*text-transform: uppercase;*/
+    cursor: url('../images/plane-cursor.png'), auto;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.mission-result .btn:hover {
+    background-color: var(--blue1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mission-result .btn:focus {
+    outline: none;
+}
+
+/* Map Icon Button */
+.map-icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--purple);
+    color: var(--white);
+    border: none;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 1rem auto;
+    cursor: url('../images/plane-cursor.png'), auto;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .page-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .map-box {
+        height: 300px;
+    }
+
+    .mission-box {
+        padding: 1rem;
+    }
+
+    .option-btn {
+        font-size: 1rem;
+    }
+
+    .next-btn {
+        padding: 0.8rem 1.5rem;
+    }
+}

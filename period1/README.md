@@ -9,7 +9,7 @@ Be faster! There are more people who will find the stone as you...
 
 
 ### Game flow
-![flow.png](images/flow.png)
+![flow.png](../images/flow.png)
 
 ### Database
 This game uses the airport table from the database course.
@@ -205,4 +205,4 @@ VALUES
 ("BIKF", "006", 400);
 ```
 
-![flow.png](images/db.png)
+![flow.png](../images/db.png)

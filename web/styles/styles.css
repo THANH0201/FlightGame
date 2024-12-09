@@ -1,0 +1,407 @@
+/* Import Google Font - Roboto */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Colors */
+:root {
+    --purple: #B983FF;
+    --blue1: #94B3FD;
+    --blue2: #94DAFF;
+    --blue3: #99FEFF;
+    --white: #ffffff;
+    --black: #333333;
+    --gray: #f2f2f2;
+}
+
+/* Body and Fonts */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--blue3);
+    color: var(--black);
+    line-height: 1.2;
+    background-image: url('../images/bg.jpg'); /* Add the background image URL here */
+    background-size: cover; /* Make sure the image covers the whole screen */
+    background-position: center center; /* Center the image */
+    background-attachment: fixed; /* Keep the background fixed when scrolling */
+
+    /* Custom Plane Cursor */
+    cursor: url('../images/plane-cursor.png'), auto;
+    transition: all 0.3s ease;
+}
+
+/* Header */
+header {
+    background: linear-gradient(to right, var(--purple), var(--blue2));
+    color: var(--white);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Center the nav and make the links responsive */
+header .nav {
+    display: flex;
+    justify-content: center; /* Center nav horizontally */
+    align-items: center;
+    width: 100%;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+header nav a {
+    text-decoration: none;
+    color: var(--white);
+    /*font-weight: bold;*/
+}
+
+header nav a.active {
+    padding-bottom: 0.2rem;
+    text-decoration: underline;
+}
+
+/* Main Section Styles */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 1.5rem;
+}
+
+/* Main Intro Section */
+.intro {
+    max-width: 800px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Header Inside Main */
+.intro h2 {
+    font-family: "Merriweather", serif;
+    font-size: 2.5rem;
+    color: var(--purple);
+    margin-bottom: 1rem;
+}
+
+.intro p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--black);
+}
+
+/* Interactive Buttons */
+.intro .btn {
+    margin: 0.5rem;
+    padding: 1rem 2rem;
+    background-color: var(--purple);
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    /*cursor: pointer;*/
+    cursor: url('../images/plane-cursor.png'), auto;
+    font-size: 1.1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    /*text-transform: uppercase;*/
+}
+
+.intro .btn:hover {
+    background-color: var(--blue1);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .intro {
+        padding: 1.5rem;
+    }
+
+    .feature-section {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .intro .btn {
+        padding: 0.8rem 1.5rem;
+    }
+
+    .feature-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 550px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-content h2 {
+    margin-bottom: 1rem;
+    color: var(--purple);
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    color: var(--black);
+    cursor: pointer;
+    /*cursor: url('../images/plane-cursor.png'), auto;*/
+    transition: color 0.3s ease;
+}
+
+.modal-content .close:hover {
+    color: var(--black);
+}
+
+/* Form Styling */
+.register-form,
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Wide field for the Airport */
+.form-group-wide {
+    grid-column: span 2; /* Make the field span across two columns */
+}
+
+.register-form label,
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select {
+    padding: 0.8rem;
+    border: 1px solid var(--gray);
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: var(--gray);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--purple);
+    outline: none;
+}
+
+/* Plane Selection */
+.plane-selection {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+.plane-selection input {
+    opacity: 0;
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.plane-selection label {
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*cursor: pointer;*/
+    cursor: url('../images/plane-cursor.png'), auto;
+    border: 1px solid var(--gray);
+    padding: 0.5rem;
+    border-radius: 10px;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plane-selection label:hover {
+    border: 1px solid var(--purple);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/*.plane-selection input[type="radio"] {*/
+/*    display: none;*/
+/*}*/
+
+.plane-selection input[type="radio"]:checked + label {
+    border: 2px solid var(--blue1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.plane-selection img {
+    max-width: 70px;
+    max-height: 50px;
+    margin-bottom: 0.5rem;
+}
+
+.plane-selection input:focus + label img {
+    border-color: #ffc107; /* Highlight the focused plane */
+}
+
+/* Submit Button */
+form .btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: var(--purple);
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    /*cursor: pointer;*/
+    cursor: url('../images/plane-cursor.png'), auto;
+    /*text-transform: uppercase;*/
+    align-self: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form .btn:hover {
+    background-color: var(--blue1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.error-message {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 5px;
+}
+
+/* Login Modal */
+.modal-content h2 {
+    margin-bottom: 1rem;
+    color: var(--purple);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: left;
+    width: 100%;
+}
+
+.login-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form .form-group label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.login-form .form-group input {
+    padding: 0.8rem;
+    border: 1px solid var(--gray);
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: var(--gray);
+    transition: border 0.3s ease;
+}
+
+.login-form .form-group input:focus {
+    border-color: var(--purple);
+    outline: none;
+}
+
+.login-form .btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: var(--purple);
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    /*cursor: pointer;*/
+    cursor: url('../images/plane-cursor.png'), auto;
+    /*text-transform: uppercase;*/
+    align-self: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-form .btn:hover {
+    background-color: var(--blue1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    font-size: 0.8rem;
+    /*background: var(--purple);*/
+    /*background: #f8f9fa;*/
+    /*color: var(--white);*/
+    color: #555;
+    padding: 0.8rem;
+    margin-top: auto; /* Ensures it stays at the bottom */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}

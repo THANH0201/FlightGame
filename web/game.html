@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Flight Game</title>
+    <link href="styles/styles.css" rel="stylesheet">
+    <link href="styles/game.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script defer src="js/game.js"></script>
+    <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+</head>
+<body>
+<header>
+    <div class="nav">
+        <nav>
+            <ul>
+                <li><a href="game.html">Home</a></li>
+                <li><a href="how-to-play.html">How to Play</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="page-container">
+        <!-- Left Box: Map (Replaced when "Continue Journey" is clicked) -->
+        <div class="map-box" id="left-box"></div>
+
+        <!-- Right Box: Tabs -->
+        <div class="tabs-box">
+            <div class="tabs-header">
+                <button class="tab-btn active" data-tab="game-status">
+                    <i class="material-icons">insights</i>
+                    <span>Game Status</span>
+                </button>
+                <button class="tab-btn" data-tab="my-team">
+                    <i class="material-icons">groups</i>
+                    <span>My Team</span>
+                </button>
+            </div>
+
+            <div class="tabs-content">
+                <!-- Game Status Content -->
+                <div class="tab-content active" id="game-status">
+                    <ul id="game-status-details">
+                        <li><strong>Total Adventures:</strong> 0</li>
+                        <li><strong>Total Score:</strong> 0</li>
+                        <li><strong>Current Mission:</strong> Visit Helsinki Airport</li>
+                    </ul>
+                    <button class="btn" id="continue-journey">Continue Journey</button>
+                    <!-- Map Icon to Return to the Map -->
+                    <button class="map-icon-btn hidden" id="back-to-map">
+                        <span class="material-icons">map</span>
+                    </button>
+                </div>
+
+                <!-- My Team Content -->
+                <div class="tab-content" id="my-team">
+                    <ul>
+                        <li><strong>Player 1:</strong> 1000 points</li>
+                        <li><strong>Player 2:</strong> 900 points</li>
+                        <li><strong>Player 3:</strong> 800 points</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 TXL24S1-D-Group 2. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

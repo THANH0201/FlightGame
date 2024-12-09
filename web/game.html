@@ -37,7 +37,7 @@
                     <i class="material-icons">insights</i>
                     <span>Game Status</span>
                 </button>
-                <button class="tab-btn" data-tab="my-team">
+                <button class="tab-btn" data-tab="my-team" id="view-team-btn">
                     <i class="material-icons">groups</i>
                     <span>My Team</span>
                 </button>
@@ -60,16 +60,44 @@
 
                 <!-- My Team Content -->
                 <div class="tab-content" id="my-team">
-                    <ul>
-                        <li><strong>Player 1:</strong> 1000 points</li>
-                        <li><strong>Player 2:</strong> 900 points</li>
-                        <li><strong>Player 3:</strong> 800 points</li>
-                    </ul>
+                    <div id="team-info"></div>
+                    <div class="hidden" id="no-team">
+                        <p>You don't belong to any team</p>
+                        <button class="btn" id="join-team-btn">Join an Existing Team</button>
+                        <button class="btn" id="create-team-btn">Create a New Team</button>
+                    </div>
                 </div>
+
+
             </div>
         </div>
     </div>
 </main>
+
+<!-- Join Team Modal -->
+<div class="modal" id="join-team-modal">
+    <div class="modal-content">
+        <span class="close-btn" id="close-join-modal">&times;</span>
+        <h2>Select a Team to Join</h2>
+
+        <div id="team-list" class="team-list">
+            <!-- Dynamic Teams Will Be Inserted Here -->
+        </div>
+    </div>
+</div>
+
+<!-- Create Team Modal -->
+<div class="modal" id="create-team-modal">
+    <div class="modal-content">
+        <span class="close-btn" id="close-create-modal">&times;</span>
+        <h2>Create a New Team</h2>
+        <form id="create-team-form">
+            <label for="team-name">Enter Your Team Name</label>
+            <input id="team-name" placeholder="Team Name" required type="text">
+            <button class="btn" type="submit">Create Team</button>
+        </form>
+    </div>
+</div>
 
 <footer>
     <p>&copy; 2024 TXL24S1-D-Group 2. All Rights Reserved.</p>

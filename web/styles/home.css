@@ -1,0 +1,30 @@
+.intro-text p {
+    font-size: 1.4rem;
+    color: var(--black);
+    margin: 15px 0;
+    font-family: "Arial", sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;   /* Initially hidden */
+    animation: typing 5s steps(60, end), blink 0.75s step-end infinite;
+}
+
+/* Typing Animation */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;  /* Fully revealed */
+    }
+}
+
+/* Blinking Cursor */
+@keyframes blink {
+    from, to {
+        border-right: 2px solid transparent;
+    }
+    50% {
+        border-right: 2px solid var(--black);
+    }
+}

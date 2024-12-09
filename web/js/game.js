@@ -384,97 +384,151 @@ async function updateProgress(isPass) {
   return result;
 }
 
-// const map = L.map('map').setView([60.23, 24.74], 13);
-// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-// }).addTo(map);
-//
-// const airportMarkers = L.featureGroup().addTo(map);
-//
-// // Search by ICAO ******************************
-// const searchForm = document.querySelector('#single');
-// const input = document.querySelector('input[name=icao]');
-// searchForm.addEventListener('submit', async function(evt) {
-//   evt.preventDefault();
-//   const icao = input.value;
-//   const response = await fetch('http://127.0.0.1:3000/airport/' + icao);
-//   const airport = await response.json();
-//   // remove possible other markers
-//   airportMarkers.clearLayers();
-//   // add marker
-//   const marker = L.marker([airport.latitude_deg, airport.longitude_deg]).
-//       addTo(map).
-//       bindPopup(airport.name).
-//       openPopup();
-//   airportMarkers.addLayer(marker);
-//   // pan map to selected airport
-//   map.flyTo([airport.latitude_deg, airport.longitude_deg]);
-// });
-// // **********************************************
-//
-// // Choose from list *****************************
-// const continentList = document.querySelector('#continents');
-// const countryList = document.querySelector('#countries');
-// const airportList = document.querySelector('#airports');
-//
-// // Start with adding continents
-// async function showContinents() {
-//   const response = await fetch('http://127.0.0.1:3000/continents');
-//   const continents = await response.json();
-//   for (const cont of continents) {
-//     const option = document.createElement('option');
-//     option.value = cont.continent;
-//     option.innerText = cont.continent;
-//     continentList.appendChild(option);
-//   }
-// }
-//
-// showContinents(); // this starts the loading of continents
-//
-// // when continent is selected get countries and add to second list...
-// continentList.addEventListener('change', async function() {
-//   countryList.innerHTML = '<option>Select Country</option>'; // empty the country and airport lists because the user might change continent
-//   airportList.innerHTML = '<option>Select Airport</option>';
-//   const response = await fetch(
-//       'http://127.0.0.1:3000/countries/' + continentList.value);
-//   const countries = await response.json();
-//   for (const country of countries) {
-//     const option = document.createElement('option');
-//     option.value = country.iso_country;
-//     option.innerText = country.name;
-//     countryList.appendChild(option);
-//   }
-// });
-//
-// // when country is selected get airports and add to third list...
-// countryList.addEventListener('change', async function() {
-//   airportList.innerHTML = '<option>Select Airport</option>'; // empty the airport list because the user might change country
-//   const response = await fetch(
-//       'http://127.0.0.1:3000/airports/' + countryList.value);
-//   const airports = await response.json();
-//   for (const airport of airports) {
-//     const option = document.createElement('option');
-//     option.value = airport.ident;
-//     option.innerText = airport.name;
-//     airportList.appendChild(option);
-//   }
-// });
-//
-// // when airport is selected show it on the map...
-// airportList.addEventListener('change', async function() {
-//   const response = await fetch(
-//       'http://127.0.0.1:3000/airport/' + airportList.value);
-//   const airport = await response.json();
-//   // remove possible other markers
-//   airportMarkers.clearLayers();
-//   // add marker
-//   const marker = L.marker([airport.latitude_deg, airport.longitude_deg]).
-//       addTo(map).
-//       bindPopup(airport.name).
-//       openPopup();
-//   airportMarkers.addLayer(marker);
-//   // pan map to selected airport
-//   map.flyTo([airport.latitude_deg, airport.longitude_deg]);
-// });
-//
-// // *********************************************
+//******************************************************************************
+const viewTeamBtn = document.getElementById('view-team-btn');
+viewTeamBtn.addEventListener('click', loadMyTeam);
+
+async function loadMyTeam() {
+  const playerId = localStorage.getItem('player_id');
+  const teamContent = document.getElementById('team-info');
+  const noTeamContent = document.getElementById('no-team');
+
+  const response = await fetch(`${backendUrl}my-team/${playerId}`);
+  const result = await response.json();
+
+  if (!response.ok) throw new Error(result.message || 'Failed to load team.');
+
+  if (result.message === 'No team found') {
+    teamContent.innerHTML = '';
+    noTeamContent.classList.remove('hidden');
+  } else {
+    teamContent.innerHTML = `
+            <h3>${result.team.team_name}</h3>
+            <ul id="team-members">
+                ${result.members.map(
+        (member) => `<li><strong>${member.username}</strong> ${member.total_score}</li>`,
+    ).join('')}
+            </ul>
+        `;
+    noTeamContent.classList.add('hidden');
+  }
+}
+
+// Get Modal Elements
+const joinModal = document.getElementById('join-team-modal');
+const createModal = document.getElementById('create-team-modal');
+
+// Get Close Buttons
+const closeJoinModal = document.getElementById('close-join-modal');
+const closeCreateModal = document.getElementById('close-create-modal');
+
+// Add Click Event Listeners
+document.getElementById('join-team-btn').addEventListener('click', () => {
+  joinModal.style.display = 'flex';
+  joinModal.classList.remove('hidden');
+});
+
+document.getElementById('create-team-btn').addEventListener('click', () => {
+  createModal.style.display = 'flex';
+  createModal.classList.remove('hidden');
+});
+
+// Close Modals on Click
+closeJoinModal.addEventListener('click', () => {
+  joinModal.classList.add('hidden');
+});
+
+closeCreateModal.addEventListener('click', () => {
+  createModal.classList.add('hidden');
+});
+
+// Join Team
+document.getElementById('join-team-btn').
+    addEventListener('click', loadAvailableTeams);
+
+async function loadAvailableTeams() {
+  const teamList = document.getElementById('team-list');
+  const joinModal = document.getElementById('join-team-modal');
+
+  try {
+    // Fetch available teams
+    const response = await fetch(`${backendUrl}teams`);
+    const result = await response.json();
+
+    if (!response.ok) throw new Error('Failed to fetch teams.');
+
+    // Clear Previous Teams and Populate
+    teamList.innerHTML = '';
+    result.teams.forEach((team) => {
+      const teamCard = document.createElement('div');
+      teamCard.className = 'team-card';
+      teamCard.dataset.teamId = team.id;
+      teamCard.innerHTML = `
+                <i class="material-icons">groups</i>
+                <h3>${team.name}</h3>
+            `;
+
+      // Attach Click Event Directly to the Card
+      teamCard.addEventListener("click", async function(event) {
+          await joinTeam(team.id);
+          document.getElementById('join-team-modal').classList.add('hidden');
+          await loadMyTeam();  // Refresh the team list
+        });
+      teamList.appendChild(teamCard);
+    });
+
+    // Show Modal
+    joinModal.classList.remove('hidden');
+  } catch (error) {
+    console.error(error);
+    alert('Failed to load teams.');
+  }
+}
+
+// Create Team Form Submission
+document.getElementById('create-team-form').
+    addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const teamName = document.getElementById('team-name').value.trim();
+      await createTeam(teamName);
+
+      createModal.classList.add('hidden');
+      await loadMyTeam();
+    });
+
+async function joinTeam(teamId) {
+  const playerId = localStorage.getItem('player_id');
+
+  try {
+    const response = await fetch(`${backendUrl}join-team`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({team_id: teamId, player_id: playerId}),
+    });
+
+    if (!response.ok) throw new Error('Failed to join team.');
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    alert('Error joining team.');
+  }
+}
+
+async function createTeam(teamName) {
+  const playerId = localStorage.getItem('player_id');
+
+  try {
+    const response = await fetch(`${backendUrl}create-team`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({team_name: teamName, player_id: playerId}),
+    });
+
+    if (!response.ok) throw new Error('Failed to create team.');
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    alert('Error creating team.');
+  }
+}

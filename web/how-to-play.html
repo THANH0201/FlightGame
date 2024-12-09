@@ -5,14 +5,17 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>How to Play</title>
     <link href="styles/styles.css" rel="stylesheet">
-    <script src="js/common.js" defer></script>
+    <link href="styles/how-to-play.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script defer src="js/common.js"></script>
+    <script defer src="js/how-to-play.js"></script>
 </head>
 <body>
 <header>
     <div class="nav">
         <nav>
             <ul>
-                <li><a id="home" href="index.html">Home</a></li>
+                <li><a href="index.html" id="home">Home</a></li>
                 <li><a class="active" href="how-to-play.html">How to Play</a></li>
                 <li><a href="leaderboard.html">Leaderboard</a></li>
                 <li><a href="about-us.html">About Us</a></li>
@@ -21,13 +24,22 @@
     </div>
 </header>
 <main>
-    <section class="intro">
-        <h2>How to Play</h2>
-        <ul>
-            <li>Step 1: Choose your airport and plane.</li>
-            <li>Step 2: Complete missions based on weather conditions.</li>
-            <li>Step 3: Earn points and unlock new levels!</li>
-        </ul>
+    <section class="how-to-play">
+        <h2><i class="material-icons">help_outline</i> How to Play</h2>
+
+        <!-- Steps Container -->
+        <div class="step-container" id="step-container"></div>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <button class="nav-btn" disabled id="prev-btn">
+                <i class="material-icons">arrow_back</i>
+            </button>
+
+            <button class="nav-btn" id="next-btn">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </div>
     </section>
 </main>
 <footer>

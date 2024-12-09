@@ -2,6 +2,25 @@
 
 const backendUrl = 'http://127.0.0.1:5000/';
 
+// Loading page ****************************************************************
+window.onload = () => {
+  const textElement = document.querySelector('.intro-text p');
+  const textContent = 'Get ready for an exciting flight adventure! Explore world-famous airports, learn about global weather patterns, and complete thrilling missions. Embark on your journey, build your team, and conquer the skies!';
+  let charIndex = 0;
+
+  function typeText() {
+    if (charIndex < textContent.length) {
+      textElement.textContent += textContent.charAt(charIndex);
+      charIndex++;
+      setTimeout(typeText, 100);  // Typing Speed
+    }
+  }
+
+  // Clear Text and Start Animation
+  textElement.textContent = '';
+  typeText();
+};
+
 // Modal Management ************************************************************
 const registerModal = document.getElementById('registerModal');
 const loginModal = document.getElementById('loginModal');

@@ -294,6 +294,122 @@ def get_leaderboard():
         return jsonify({"error": str(e)}), 500
 
 
+@app.route('/my-team/<int:player_id>', methods=['GET'])
+def get_my_team(player_id):
+    conn = db.get_conn()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        # Check if player belongs to a team
+        team_sql = '''
+            SELECT t.id AS team_id, t.name AS team_name, p.username, p.total_score
+            FROM team t INNER JOIN player p ON t.id = p.team_id
+            WHERE p.id = %s
+        '''
+        cursor.execute(team_sql, (player_id,))
+        team = cursor.fetchone()
+
+        if not team:
+            return jsonify({"message": "No team found"}), 200
+
+        member_list_sql = '''
+            SELECT username, total_score, total_adventure
+            FROM player
+            WHERE team_id = %s
+            ORDER BY total_score DESC, total_adventure DESC, username
+        '''
+        cursor.execute(member_list_sql, (team['team_id'],))
+        members = cursor.fetchall()
+
+        return jsonify({
+            "team": team,
+            "members": members
+        }), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/join-team', methods=['POST'])
+def join_team():
+    data = request.json
+    player_id = data['player_id']
+    team_id = data['team_id']
+
+    conn = db.get_conn()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        # Update team id info of player
+        join_team_sql = '''
+            UPDATE player
+            SET team_id = %s
+            WHERE id = %s
+        '''
+        cursor.execute(join_team_sql, (team_id, player_id))
+        conn.commit()
+
+        return jsonify({"message": "Successfully joined the team!"}), 200
+
+    except Exception as e:
+        conn.rollback()
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/create-team', methods=['POST'])
+def create_new_team():
+    data = request.json
+    team_name = data['team_name']
+    player_id = data['player_id']
+
+    conn = db.get_conn()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        # Create the team and get its ID
+        create_team_sql = '''
+            INSERT INTO team (name)
+            VALUES (%s)
+        '''
+        cursor.execute(create_team_sql, (team_name,))
+        team_id = cursor.lastrowid
+
+        # Update team id info of player
+        update_team_sql = '''
+                    UPDATE player
+                    SET team_id = %s
+                    WHERE id = %s
+                '''
+        cursor.execute(update_team_sql, (team_id, player_id))
+        conn.commit()
+
+        return jsonify({"message": "Team created successfully!", "team_id": team_id}), 201
+
+    except Exception as e:
+        conn.rollback()
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/teams', methods=['GET'])
+def get_available_teams():
+    conn = db.get_conn()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        # Fetch all available teams
+        available_teams_query = '''
+            SELECT id, name
+            FROM team
+            ORDER BY name ASC
+        '''
+        cursor.execute(available_teams_query)
+        teams = cursor.fetchall()
+
+        return jsonify({"teams": teams}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 if __name__ == '__main__':
     app.run(debug=True)
     # app.run(use_reloader=True, host='127.0.0.1', port=5000)

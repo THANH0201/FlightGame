@@ -9,31 +9,31 @@ window.onload = async () => {
     homeMenu.href = 'game.html';
   }
 
-    try {
-        const response = await fetch(`${backendUrl}leaderboard`);
+  try {
+    const response = await fetch(`${backendUrl}leaderboard`);
 
-        if (!response.ok) {
-            throw new Error("Failed to fetch leaderboard.");
-        }
-
-        const players = await response.json();
-        populateLeaderboard(players);
-
-    } catch (error) {
-        console.error("Error:", error);
-        alert("Failed to load leaderboard. Please try again.");
+    if (!response.ok) {
+      throw new Error('Failed to fetch leaderboard.');
     }
+
+    const players = await response.json();
+    populateLeaderboard(players);
+
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Failed to load leaderboard. Please try again.');
+  }
 };
 
 // Populate Leaderboard Table
 function populateLeaderboard(players) {
-    const leaderboardBody = document.getElementById("leaderboard-body");
-    leaderboardBody.innerHTML = "";  // Clear previous content
+  const leaderboardBody = document.getElementById('leaderboard-body');
+  leaderboardBody.innerHTML = '';  // Clear previous content
 
-    players.forEach((player, index) => {
-        const row = document.createElement("tr");
+  players.forEach((player, index) => {
+    const row = document.createElement('tr');
 
-        row.innerHTML = `
+    row.innerHTML = `
             <td>
                 <span class="rank-badge">${index + 1}</span>
             </td>
@@ -47,6 +47,6 @@ function populateLeaderboard(players) {
                 <i class="material-icons">flight_takeoff</i> ${player.total_adventure}
             </td>
         `;
-        leaderboardBody.appendChild(row);
-    });
+    leaderboardBody.appendChild(row);
+  });
 }

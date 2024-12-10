@@ -5,7 +5,7 @@ const maxScore = 50;
 const minScore = 30;
 let map;
 
-// Initialize Game on Load
+// Initialize Game on Load *****************************************************
 window.onload = async () => {
   const playerId = localStorage.getItem('player_id');
   if (!playerId) {
@@ -384,7 +384,7 @@ async function updateProgress(isPass) {
   return result;
 }
 
-//******************************************************************************
+// Handle MY TEAM tab **********************************************************
 const viewTeamBtn = document.getElementById('view-team-btn');
 viewTeamBtn.addEventListener('click', loadMyTeam);
 
@@ -469,11 +469,11 @@ async function loadAvailableTeams() {
             `;
 
       // Attach Click Event Directly to the Card
-      teamCard.addEventListener("click", async function(event) {
-          await joinTeam(team.id);
-          document.getElementById('join-team-modal').classList.add('hidden');
-          await loadMyTeam();  // Refresh the team list
-        });
+      teamCard.addEventListener('click', async function(event) {
+        await joinTeam(team.id);
+        document.getElementById('join-team-modal').classList.add('hidden');
+        await loadMyTeam();  // Refresh the team list
+      });
       teamList.appendChild(teamCard);
     });
 

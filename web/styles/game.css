@@ -431,6 +431,11 @@
     background-color: var(--gray);
 }
 
+.modal-content input:focus {
+    border-color: var(--purple);
+    outline: none;
+}
+
 .modal-content .btn {
     padding: 0.8rem 1.5rem;
     font-size: 1rem;

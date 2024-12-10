@@ -258,6 +258,7 @@ main {
     justify-content: space-between;
     gap: 0.5rem;
 }
+
 .plane-selection input {
     opacity: 0;
     position: absolute;

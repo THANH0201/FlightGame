@@ -3,7 +3,7 @@
     width: 80%;
     max-height: 400px; /* Set maximum height for scrolling */
     margin: 20px auto;
-    overflow-y: auto;  /* Enable vertical scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
     border: 2px solid var(--blue1);
     border-radius: 8px;
     background: var(--white);
@@ -26,8 +26,8 @@
 
 #leaderboard-table th,
 #leaderboard-table td {
-    padding: 10px 15px;   /* Reduced padding */
-    font-size: 0.9rem;    /* Smaller text size */
+    padding: 10px 15px; /* Reduced padding */
+    font-size: 0.9rem; /* Smaller text size */
     border: 1px solid var(--blue1);
 }
 
@@ -39,14 +39,9 @@
     background: var(--blue3);
 }
 
-#leaderboard-table tbody tr:hover {
-    background: var(--blue1);
-    color: var(--white);
-}
-
 /* Rank Badge and Icons */
 .rank-badge {
-    font-size: 1.2rem;    /* Smaller font size */
+    font-size: 1.2rem; /* Smaller font size */
     font-weight: bold;
     color: var(--purple);
 }

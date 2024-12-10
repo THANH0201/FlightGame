@@ -6,4 +6,4 @@ window.onload = function() {
     const homeMenu = document.getElementById('home');
     homeMenu.href = 'game.html';
   }
-}
+};

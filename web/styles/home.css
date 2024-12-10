@@ -5,7 +5,7 @@
     font-family: "Arial", sans-serif;
     white-space: nowrap;
     overflow: hidden;
-    width: 0;   /* Initially hidden */
+    width: 0; /* Initially hidden */
     animation: typing 5s steps(60, end), blink 0.75s step-end infinite;
 }
 
@@ -15,7 +15,7 @@
         width: 0;
     }
     to {
-        width: 100%;  /* Fully revealed */
+        width: 100%; /* Fully revealed */
     }
 }
 

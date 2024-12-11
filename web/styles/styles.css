@@ -49,30 +49,58 @@ header {
     z-index: 1000;
 }
 
-/* Center the nav and make the links responsive */
+/* Navigation */
 header .nav {
+    /*padding: 15px 30px;*/
+}
+
+header .nav nav {
     display: flex;
-    justify-content: center; /* Center nav horizontally */
+    justify-content: center;
     align-items: center;
-    width: 100%;
+    position: relative;
 }
 
 header nav ul {
     list-style: none;
     display: flex;
     gap: 1.5rem;
-    justify-content: center;
+    padding: 0;
+    margin: 0;
 }
 
 header nav a {
     text-decoration: none;
     color: var(--white);
-    /*font-weight: bold;*/
+}
+
+header nav a:hover {
+    font-weight: bold;
+    /*text-decoration: underline;*/
 }
 
 header nav a.active {
     padding-bottom: 0.2rem;
+    font-weight: bold;
     text-decoration: underline;
+}
+
+/* Logout Icon Style */
+.logout-btn {
+    position: absolute;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: var(--white);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.logout-btn:hover {
+    color: var(--blue1);
 }
 
 /* Main Section Styles */

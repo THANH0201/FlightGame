@@ -399,17 +399,35 @@ async function loadMyTeam() {
   if (!response.ok) throw new Error(result.message || 'Failed to load team.');
 
   if (result.message === 'No team found') {
-    teamContent.innerHTML = '';
+    teamContent.classList.add('hidden');
     noTeamContent.classList.remove('hidden');
   } else {
-    teamContent.innerHTML = `
-            <h3>${result.team.team_name}</h3>
-            <ul id="team-members">
-                ${result.members.map(
-        (member) => `<li><strong>${member.username}</strong> ${member.total_score}</li>`,
-    ).join('')}
-            </ul>
-        `;
+    const teamName = document.getElementById('team');
+    teamName.innerText = result.team.team_name;
+
+    const teamMembers = document.getElementById('team-members');
+    teamMembers.innerHTML = '';
+
+    result.members.forEach((member) => {
+      const memberRow = document.createElement('tr');
+
+      const userNameCol = document.createElement('td');
+      userNameCol.innerHTML = `<strong>${member.username}</strong>`;
+
+      const scoreCol = document.createElement('td');
+      scoreCol.innerHTML = `<i class="material-icons">star</i> ${member.total_score}`;
+
+      const adventureCol = document.createElement('td');
+      adventureCol.innerHTML = `<i class="material-icons">flight_takeoff</i> ${member.total_adventure}`;
+
+      memberRow.appendChild(userNameCol);
+      memberRow.appendChild(scoreCol);
+      memberRow.appendChild(adventureCol);
+
+      teamMembers.appendChild(memberRow);
+    });
+
+    teamContent.classList.remove('hidden');
     noTeamContent.classList.add('hidden');
   }
 }
@@ -532,3 +550,10 @@ async function createTeam(teamName) {
     alert('Error creating team.');
   }
 }
+
+// Handle Logout Action
+document.getElementById('logout-btn').addEventListener('click', () => {
+  // Clear user data and redirect to the homepage
+  localStorage.clear();
+  window.location.href = 'index.html';
+});

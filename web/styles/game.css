@@ -458,6 +458,10 @@
     text-align: center;
 }
 
+table#team-table {
+    width: 100%;
+}
+
 /* Team Card (Clickable) */
 .team-card {
     background: linear-gradient(to right, var(--purple), var(--blue2));

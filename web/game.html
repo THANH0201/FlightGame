@@ -15,12 +15,15 @@
 <header>
     <div class="nav">
         <nav>
-            <ul>
+            <ul class="nav-links">
                 <li><a href="game.html">Home</a></li>
                 <li><a href="how-to-play.html">How to Play</a></li>
                 <li><a href="leaderboard.html">Leaderboard</a></li>
                 <li><a href="about-us.html">About Us</a></li>
             </ul>
+            <button class="logout-btn" id="logout-btn">
+                <i class="material-icons">logout</i> Logout
+            </button>
         </nav>
     </div>
 </header>
@@ -60,7 +63,14 @@
 
                 <!-- My Team Content -->
                 <div class="tab-content" id="my-team">
-                    <div id="team-info"></div>
+                    <div id="team-info">
+                        <h3 id="team"><!-- Loading team name --></h3>
+                        <table id="team-table">
+                            <tbody id="team-members">
+                            <!-- Dynamic Content Will Be Loaded Here -->
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="hidden" id="no-team">
                         <p>You don't belong to any team</p>
                         <button class="btn" id="join-team-btn">Join an Existing Team</button>

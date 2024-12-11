@@ -1,0 +1,18 @@
+In the new version of Flight Game, we would like to introduce the outstanding and unique features we have added to bring players a new gaming experience.
+1. the location of airports and World Map: Players can take off at thousands of real airport locations worldwide and feel the vastness of the earth and the unlimited adventures that await them. 
+2. To increase realism, we integrated the online weather service inside the game. It would be best to know about the weather conditions like rain, wind, snow, or storms at any airport
+4. we added the online OpenTrivia service. It provides thousands of questions about aviation, geography, history, and other topics. 
+5. Flight Game v02 supports all electronic devices with a user-friendly and easy-to-use interface, so everyone from kids to adults can experience the game smoothly on any device they have, wherever they are.
+comparision
+1. Simple user interface
+V1.0: version 01 uses a command-line interface, which is simple and accessible to players. However, manual data entry makes the experience somewhat limited.
+V2.0: In version 02, we have optimized the interface to be more user-friendly and easy to interact with. Players can interact visually through the website, providing a seamless and enjoyable experience.
+2. Data Limitations
+V1.0: Version 01 encountered limitations on the number of questions and required players to input data manually, causing inconvenience and reducing the richness of the game.
+With the integration of the OpenTrivia API, the new version no longer limits the number of questions. Players can experience thousands of diverse and rich questions without manual input.
+3. Data storage
+V01: Ample, complex data storage, v02: Stored data is compact and easy to manage
+4. Accessibility
+V1.0: Accessing the game from devices other than personal computers is difficult, limiting the player's experience.
+The new version supports access from anywhere, independent of the operating system. Players can access the game from all electronic devices.
+
